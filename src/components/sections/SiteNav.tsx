@@ -6,13 +6,13 @@ import { GitHubIcon, MoonIcon, SunIcon } from "@/components/icons";
 import { NAV_ITEMS, SITE } from "@/constants/site";
 
 export function SiteNav() {
-  const { toggle, isDark } = useDarkroomDarkMode();
+  const { toggle, darkModeEnabled } = useDarkroomDarkMode();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
   const themeLabel = mounted
-    ? isDark
+    ? darkModeEnabled
       ? "Switch to light mode"
       : "Switch to dark mode"
     : "Toggle color theme";
@@ -35,7 +35,7 @@ export function SiteNav() {
           </a>
         ))}
         <button type="button" className="icon-btn" onClick={toggle} aria-label={themeLabel}>
-          {mounted && isDark ? <SunIcon /> : <MoonIcon />}
+          {mounted && darkModeEnabled ? <SunIcon /> : <MoonIcon />}
         </button>
         <a
           className="icon-btn"

@@ -10,7 +10,7 @@ export function GetStartedSection() {
   return (
     <section className="section" id="get-started" aria-labelledby="install-title">
       <div className="section-grid">
-        <p className="num-label">05 — Install</p>
+        <p className="num-label">04 — Install</p>
         <div>
           <h2 id="install-title">Get started in minutes</h2>
           <p className="section-intro">

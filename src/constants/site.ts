@@ -10,10 +10,9 @@ export const SITE = {
 
 export const NAV_ITEMS = [
   { label: "Features", href: "#features" },
-  { label: "Components", href: "#components" },
   { label: "Theming", href: "#theming" },
   { label: "Install", href: "#get-started" },
-  { label: "Docs", href: SITE.storybookUrl },
+  { label: "Components", href: SITE.storybookUrl },
 ] as const;
 
 export const FEATURES = [
@@ -44,27 +43,6 @@ export const FEATURES = [
   {
     title: "Storybook",
     description:
-      "Interactive docs and examples for every component — the source of truth while the site grows.",
+      "Interactive docs and examples for every component — open Components in the nav to explore.",
   },
-] as const;
-
-export const COMPONENT_LIST = [
-  "Heading",
-  "Text",
-  "Label",
-  "Button",
-  "Badge",
-  "RecipeCard",
-  "MediaCard",
-  "Divider",
-  "ContentGrid",
-  "NavBar",
-  "Hero",
-  "NewsletterSignup",
-  "SocialLink",
-  "Figure",
-  "Footer",
-  "Page",
-  "Container",
-  "Section",
 ] as const;

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDarkroomDarkMode } from "darkroom-ui";
 
 export function ThemingSection() {
-  const { theme, setTheme, isDark } = useDarkroomDarkMode();
+  const { theme, setTheme, darkModeEnabled } = useDarkroomDarkMode();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -12,7 +12,7 @@ export function ThemingSection() {
   return (
     <section className="section" id="theming" aria-labelledby="theming-title">
       <div className="section-grid">
-        <p className="num-label">04 — Tone</p>
+        <p className="num-label">03 — Tone</p>
         <div>
           <h2 id="theming-title">Styled with CSS variables</h2>
           <p className="section-intro">
@@ -31,7 +31,7 @@ export function ThemingSection() {
             <div className="theme-pane demo">
               <p className="theme-status">
                 {mounted
-                  ? `Current: ${isDark ? "dark" : "light"} (${theme})`
+                  ? `Current: ${darkModeEnabled ? "dark" : "light"} (${theme})`
                   : "Current theme loads from your preference"}
               </p>
               <div className="theme-toggles" role="group" aria-label="Color theme">
