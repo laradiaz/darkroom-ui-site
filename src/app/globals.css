@@ -398,36 +398,45 @@ code.inline {
 
 .colophon {
   padding-block: var(--space-xl) var(--space-2xl);
-  display: grid;
-  gap: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
 }
 
-.colophon-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--space-sm) var(--space-lg);
+.colophon-brand {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+}
+
+.colophon-meta {
+  margin: 0;
   font-size: var(--text-sm);
   color: var(--color-ink-2);
 }
 
-.colophon-row a {
+.colophon-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm) var(--space-lg);
+  font-size: var(--text-sm);
+}
+
+.colophon-links a {
   color: var(--color-ink);
   text-decoration: none;
   border-bottom: 1px solid var(--color-rule);
   white-space: nowrap;
 }
 
-.colophon-row a:hover {
+.colophon-links a:hover {
   border-color: var(--color-ink);
-}
-
-.colophon-brand {
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  font-weight: 600;
-  color: var(--color-ink);
-  letter-spacing: -0.02em;
 }
 
 @media (max-width: 768px) {

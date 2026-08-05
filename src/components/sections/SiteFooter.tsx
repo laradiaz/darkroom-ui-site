@@ -1,14 +1,13 @@
-import { NAV_ITEMS, SITE } from "@/constants/site";
+import { SITE } from "@/constants/site";
 
 export function SiteFooter() {
   return (
     <footer className="colophon">
-      <div className="colophon-row">
-        <span className="colophon-brand">{SITE.name}</span>
-        <span>MIT License</span>
-        <span>© {new Date().getFullYear()}</span>
-      </div>
-      <div className="colophon-row">
+      <p className="colophon-brand">{SITE.name}</p>
+      <p className="colophon-meta">
+        MIT · © {new Date().getFullYear()}
+      </p>
+      <nav className="colophon-links" aria-label="Resources">
         <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">
           GitHub
         </a>
@@ -18,12 +17,7 @@ export function SiteFooter() {
         <a href={SITE.storybookUrl} target="_blank" rel="noopener noreferrer">
           Storybook
         </a>
-        {NAV_ITEMS.filter((item) => item.href.startsWith("#")).map((item) => (
-          <a key={item.href} href={item.href}>
-            {item.label}
-          </a>
-        ))}
-      </div>
+      </nav>
     </footer>
   );
 }
