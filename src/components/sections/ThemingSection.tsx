@@ -1,69 +1,234 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useDarkroomDarkMode } from "darkroom-ui";
+import { useEffect, useId, useRef, useState } from "react";
+import { Button, Heading, Label, Text, useDarkroomDarkMode } from "darkroom-ui";
 import { useLocale } from "@/components/LocaleProvider";
+import { SITE } from "@/constants/site";
 
-export function ThemingSection() {
-  const { theme, setTheme, isDark } = useDarkroomDarkMode();
-  const { copy } = useLocale();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
+function PreviewSurface({
+  brand,
+  kicker,
+  heading,
+  body,
+  cta,
+  mediaAlt,
+  foot,
+  dark,
+}: {
+  brand: string;
+  kicker: string;
+  heading: string;
+  body: string;
+  cta: string;
+  mediaAlt: string;
+  foot: string;
+  dark: boolean;
+}) {
   return (
-    <section className="section" id="theming" aria-labelledby="theming-title">
-      <div className="section-grid">
-        <p className="num-label">{copy.theming.rail}</p>
-        <div>
-          <h2 id="theming-title">{copy.theming.title}</h2>
-          <p className="section-intro">
-            {copy.theming.introBefore}{" "}
-            <code className="inline">useDarkroomDarkMode()</code> {copy.theming.introAfter}
-          </p>
-          <div className="theme-split">
-            <div className="theme-pane">
-              <p className="section-intro" style={{ margin: 0 }}>
-                {copy.theming.pane} <code className="inline">.dark</code>{" "}
-                {copy.theming.paneAfter} <code className="inline">html</code>.
-              </p>
-            </div>
-            <div className="theme-pane demo">
-              <p className="theme-status">
-                {mounted
-                  ? copy.theming.current(isDark ? "dark" : "light", theme)
-                  : copy.theming.currentLoading}
-              </p>
-              <div className="theme-toggles" role="group" aria-label={copy.theming.themeGroup}>
-                <button
-                  type="button"
-                  className="btn-outline"
-                  aria-pressed={mounted && theme === "light"}
-                  onClick={() => setTheme("light")}
-                >
-                  {copy.theming.light}
-                </button>
-                <button
-                  type="button"
-                  className="btn-outline"
-                  aria-pressed={mounted && theme === "dark"}
-                  onClick={() => setTheme("dark")}
-                >
-                  {copy.theming.dark}
-                </button>
-                <button
-                  type="button"
-                  className="btn-outline"
-                  aria-pressed={mounted && theme === "system"}
-                  onClick={() => setTheme("system")}
-                >
-                  {copy.theming.system}
-                </button>
-              </div>
-            </div>
+    <div
+      className={`mini-card preview-surface ${dark ? "preview-theme-dark" : "preview-theme-light"}`}
+    >
+      <div className="mini-card-bar">
+        <strong>{brand}</strong>
+        <div className="mini-dots">
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+      <div className="mini-card-body">
+        <img className="mini-media" src="/landing-example.jpg" alt={mediaAlt} />
+        <div className="mini-copy">
+          <Label>{kicker}</Label>
+          <Heading level={3}>{heading}</Heading>
+          <Text size="caption">{body}</Text>
+          <div className="preview-actions">
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => window.open(SITE.storybookUrl, "_blank", "noopener,noreferrer")}
+            >
+              {cta}
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => window.open(SITE.githubUrl, "_blank", "noopener,noreferrer")}
+            >
+              GitHub
+            </Button>
           </div>
         </div>
       </div>
+      <div className="mini-card-foot">{foot}</div>
+    </div>
+  );
+}
+
+export function ThemingSection() {
+  const { setTheme, isDark } = useDarkroomDarkMode();
+  const { copy } = useLocale();
+  const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [previewDark, setPreviewDark] = useState(false);
+  const titleId = useId();
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+
+    return () => {
+      document.body.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+      triggerRef.current?.focus();
+    };
+  }, [open]);
+
+  const pageFoot = mounted && isDark ? copy.reveal.previewDark : copy.reveal.previewLight;
+  const previewFoot = previewDark ? copy.reveal.previewDark : copy.reveal.previewLight;
+
+  const openModal = () => {
+    setPreviewDark(isDark);
+    setOpen(true);
+  };
+
+  return (
+    <section className="reveal" id="theming" aria-labelledby="reveal-title">
+      <div className="reveal-inner">
+        <div className="reveal-copy">
+          <span className="label">{copy.reveal.tag}</span>
+          <h2 id="reveal-title">
+            {copy.reveal.titleA}
+            <br />
+            {copy.reveal.titleB}
+          </h2>
+          <p>{copy.reveal.body}</p>
+          <div className="theme-btns" role="group" aria-label={copy.nav.themeToggle}>
+            <button
+              type="button"
+              className={`btn-ghost${mounted && !isDark ? " is-active" : ""}`}
+              aria-pressed={mounted && !isDark}
+              onClick={() => setTheme("light")}
+            >
+              {copy.reveal.light}
+            </button>
+            <button
+              type="button"
+              className={`btn-ghost${mounted && isDark ? " is-active" : ""}`}
+              aria-pressed={mounted && isDark}
+              onClick={() => setTheme("dark")}
+            >
+              {copy.reveal.dark}
+            </button>
+          </div>
+        </div>
+
+        <button
+          ref={triggerRef}
+          type="button"
+          className="mini-card mini-card-trigger"
+          onClick={openModal}
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          aria-label={copy.reveal.openPreview}
+        >
+          <div className="mini-card-bar">
+            <strong>{copy.reveal.miniBrand}</strong>
+            <div className="mini-dots">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+          <div className="mini-card-body">
+            <img className="mini-media" src="/landing-example.jpg" alt="" />
+            <div className="mini-copy">
+              <span className="kicker">{copy.reveal.miniKicker}</span>
+              <span className="heading">{copy.reveal.miniHeading}</span>
+              <span className="body">{copy.reveal.miniBody}</span>
+              <span className="mini-cta">{copy.reveal.miniCta}</span>
+            </div>
+          </div>
+          <div className="mini-card-foot">{pageFoot}</div>
+        </button>
+      </div>
+
+      {open ? (
+        <div
+          className="preview-modal-root"
+          role="presentation"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setOpen(false);
+          }}
+        >
+          <div
+            className="preview-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+          >
+            <header className="preview-modal-head">
+              <div>
+                <h3 id={titleId}>{copy.reveal.modalTitle}</h3>
+                <p>{copy.reveal.modalHint}</p>
+              </div>
+              <button
+                ref={closeRef}
+                type="button"
+                className="preview-modal-close"
+                onClick={() => setOpen(false)}
+                aria-label={copy.reveal.closePreview}
+              >
+                ×
+              </button>
+            </header>
+
+            <div
+              className="theme-btns preview-modal-themes"
+              role="group"
+              aria-label={copy.nav.themeToggle}
+            >
+              <button
+                type="button"
+                className={`btn-ghost${!previewDark ? " is-active" : ""}`}
+                aria-pressed={!previewDark}
+                onClick={() => setPreviewDark(false)}
+              >
+                {copy.reveal.light}
+              </button>
+              <button
+                type="button"
+                className={`btn-ghost${previewDark ? " is-active" : ""}`}
+                aria-pressed={previewDark}
+                onClick={() => setPreviewDark(true)}
+              >
+                {copy.reveal.dark}
+              </button>
+            </div>
+
+            <PreviewSurface
+              brand={copy.reveal.miniBrand}
+              kicker={copy.reveal.miniKicker}
+              heading={copy.reveal.miniHeading}
+              body={copy.reveal.miniBody}
+              cta={copy.reveal.miniCta}
+              mediaAlt={copy.reveal.mediaAlt}
+              foot={previewFoot}
+              dark={previewDark}
+            />
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }
