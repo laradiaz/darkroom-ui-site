@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDarkroomDarkMode } from "darkroom-ui";
 
 export function ThemingSection() {
-  const { theme, setTheme, darkModeEnabled } = useDarkroomDarkMode();
+  const { theme, setTheme, isDark } = useDarkroomDarkMode();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -31,7 +31,7 @@ export function ThemingSection() {
             <div className="theme-pane demo">
               <p className="theme-status">
                 {mounted
-                  ? `Current: ${darkModeEnabled ? "dark" : "light"} (${theme})`
+                  ? `Current: ${isDark ? "dark" : "light"} (${theme})`
                   : "Current theme loads from your preference"}
               </p>
               <div className="theme-toggles" role="group" aria-label="Color theme">
