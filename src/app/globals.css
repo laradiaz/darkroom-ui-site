@@ -130,13 +130,6 @@ button {
   margin: 0 auto;
 }
 
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-width: 0;
-}
-
 .edition-label {
   display: flex;
   align-items: center;

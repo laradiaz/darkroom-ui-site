@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDarkroomDarkMode } from "darkroom-ui";
 import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
-import { goToSection, stripHashAndScroll } from "@/scroll";
 
 export function SiteNav() {
   const { toggle, isDark } = useDarkroomDarkMode();
@@ -10,7 +9,6 @@ export function SiteNav() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
-  useEffect(() => stripHashAndScroll(), []);
 
   const themeLabel = mounted
     ? isDark
@@ -21,15 +19,9 @@ export function SiteNav() {
   return (
     <header className="site-header">
       <nav className="site-nav" aria-label={copy.nav.primary}>
-        <div className="nav-brand">
-          <a
-            className="edition-label"
-            href="/"
-            onClick={(e) => goToSection(e, "top")}
-          >
-            {copy.edition}
-          </a>
-        </div>
+        <a className="edition-label" href="#top">
+          {SITE.name}
+        </a>
         <div className="nav-links">
           <a href={SITE.storybookUrl} target="_blank" rel="noopener noreferrer">
             {copy.nav.catalog}
