@@ -29,7 +29,9 @@ function CopyCard({
       await navigator.clipboard.writeText(text);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
-    } catch {}
+    } catch {
+      return;
+    }
   }, [text]);
 
   return (

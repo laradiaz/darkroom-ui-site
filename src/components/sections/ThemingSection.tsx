@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Button, Heading, Label, Text, useDarkroomDarkMode } from "darkroom-ui";
 import { useLocale } from "@/components/LocaleProvider";
+import { SITE } from "@/constants/site";
 
 function PreviewSurface({
   brand,
@@ -70,6 +71,7 @@ export function ThemingSection() {
     if (!open) return;
 
     const prev = document.body.style.overflow;
+    const trigger = triggerRef.current;
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
 
@@ -81,7 +83,7 @@ export function ThemingSection() {
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
-      triggerRef.current?.focus();
+      trigger?.focus();
     };
   }, [open]);
 
@@ -134,7 +136,7 @@ export function ThemingSection() {
           aria-label={copy.reveal.openPreview}
         >
           <div className="mini-card-bar">
-            <strong>{copy.reveal.miniBrand}</strong>
+            <strong>{SITE.name}</strong>
             <div className="mini-dots">
               <span />
               <span />
@@ -208,7 +210,7 @@ export function ThemingSection() {
             </div>
 
             <PreviewSurface
-              brand={copy.reveal.miniBrand}
+              brand={SITE.name}
               kicker={copy.reveal.miniKicker}
               heading={copy.reveal.miniHeading}
               body={copy.reveal.miniBody}

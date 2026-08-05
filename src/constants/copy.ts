@@ -4,11 +4,7 @@ export const LOCALE_STORAGE_KEY = "darkroom-ui-locale";
 
 export const COPY = {
   en: {
-    edition: "darkroom-ui",
     nav: {
-      index: "Features",
-      reveal: "Theming",
-      negative: "Install",
       catalog: "Components",
       primary: "Primary",
       themeToLight: "Light",
@@ -17,16 +13,12 @@ export const COPY = {
       langAria: "Switch language",
     },
     hero: {
-      version: "v0.2.0",
       kicker: "react component kit",
       titleA: "Ship",
       titleB: "clear interfaces.",
       body: "A monochrome React component library for content-heavy UIs. Paper and charcoal tokens, CSS-variable theming, tree-shakeable exports — no accent rainbow.",
       cta: "Get started",
       source: "Source code →",
-      tagline: "Monochrome editorial React components",
-      description:
-        "A monochrome React component library for content-heavy UIs.",
     },
     features: {
       title: "What you get",
@@ -79,7 +71,6 @@ export const COPY = {
       dark: "Dark",
       previewLight: "html (light)",
       previewDark: "html.dark",
-      miniBrand: "darkroom-ui",
       miniKicker: "media card",
       miniHeading: "Compose the page.",
       miniBody:
@@ -89,7 +80,7 @@ export const COPY = {
       openPreview: "Open live preview",
       closePreview: "Close preview",
       modalTitle: "Live component preview",
-      modalHint: "Toggle light/dark — the same tokens drive the page and this preview.",
+      modalHint: "Toggle light/dark on this card only — the page theme stays put.",
     },
     install: {
       tag: "03 — Install",
@@ -107,11 +98,7 @@ export const COPY = {
     },
   },
   es: {
-    edition: "darkroom-ui",
     nav: {
-      index: "Features",
-      reveal: "Theming",
-      negative: "Install",
       catalog: "Components",
       primary: "Principal",
       themeToLight: "Claro",
@@ -120,16 +107,12 @@ export const COPY = {
       langAria: "Cambiar idioma",
     },
     hero: {
-      version: "v0.2.0",
       kicker: "kit de componentes react",
       titleA: "Interfaces",
       titleB: "claras, al grano.",
       body: "Una librería React monocroma para UIs con mucho contenido. Tokens papel y carbón, theming por variables CSS, exports tree-shakeable — sin arcoíris de acentos.",
       cta: "Empezar",
       source: "Código fuente →",
-      tagline: "Componentes React editoriales monocromáticos",
-      description:
-        "Una librería React monocroma para UIs con mucho contenido.",
     },
     features: {
       title: "Qué incluye",
@@ -182,7 +165,6 @@ export const COPY = {
       dark: "Oscuro",
       previewLight: "html (claro)",
       previewDark: "html.dark",
-      miniBrand: "darkroom-ui",
       miniKicker: "media card",
       miniHeading: "Componé la página.",
       miniBody:
@@ -192,7 +174,7 @@ export const COPY = {
       openPreview: "Abrir preview en vivo",
       closePreview: "Cerrar preview",
       modalTitle: "Preview de componentes",
-      modalHint: "Alterná claro/oscuro — los mismos tokens mueven la página y este preview.",
+      modalHint: "Alterná claro/oscuro solo en esta card — el tema de la página no cambia.",
     },
     install: {
       tag: "03 — Install",
