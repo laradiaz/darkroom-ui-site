@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDarkroomDarkMode } from "darkroom-ui";
 import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
+import { goToSection, stripHashAndScroll } from "@/scroll";
 
 export function SiteNav() {
   const { toggle, isDark } = useDarkroomDarkMode();
@@ -9,19 +10,13 @@ export function SiteNav() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
+  useEffect(() => stripHashAndScroll(), []);
 
   const themeLabel = mounted
     ? isDark
       ? copy.nav.themeToLight
       : copy.nav.themeToDark
     : copy.nav.themeToggle;
-
-  const navItems = [
-    { label: copy.nav.index, href: "#features" },
-    { label: copy.nav.reveal, href: "#theming" },
-    { label: copy.nav.negative, href: "#install" },
-    { label: copy.nav.catalog, href: SITE.storybookUrl, external: true },
-  ];
 
   return (
     <>
@@ -54,19 +49,27 @@ export function SiteNav() {
       </div>
 
       <nav className="site-nav" aria-label={copy.nav.primary}>
-        <a className="wordmark" href="#top" aria-label={SITE.name}>
+        <a
+          className="wordmark"
+          href="/"
+          aria-label={SITE.name}
+          onClick={(e) => goToSection(e, "top")}
+        >
           <img src="/android-chrome-192x192.png" alt="" width={36} height={36} />
         </a>
         <div className="nav-links">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            >
-              {item.label}
-            </a>
-          ))}
+          <a href="/" onClick={(e) => goToSection(e, "features")}>
+            {copy.nav.index}
+          </a>
+          <a href="/" onClick={(e) => goToSection(e, "theming")}>
+            {copy.nav.reveal}
+          </a>
+          <a href="/" onClick={(e) => goToSection(e, "install")}>
+            {copy.nav.negative}
+          </a>
+          <a href={SITE.storybookUrl} target="_blank" rel="noopener noreferrer">
+            {copy.nav.catalog}
+          </a>
         </div>
       </nav>
     </>

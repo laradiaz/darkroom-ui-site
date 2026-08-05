@@ -1,5 +1,6 @@
 import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
+import { goToSection } from "@/scroll";
 
 export function HeroSection() {
   const { copy } = useLocale();
@@ -21,7 +22,7 @@ export function HeroSection() {
         <div className="hero-aside">
           <p>{copy.hero.body}</p>
           <div className="cta-row">
-            <a className="btn-primary" href="#install">
+            <a className="btn-primary" href="/" onClick={(e) => goToSection(e, "install")}>
               {copy.hero.cta}
             </a>
             <a
