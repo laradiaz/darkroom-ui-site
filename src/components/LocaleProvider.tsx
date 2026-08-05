@@ -1,5 +1,3 @@
-"use client";
-
 import {
   createContext,
   useCallback,
@@ -14,7 +12,6 @@ type LocaleContextValue = {
   locale: Locale;
   copy: Copy;
   setLocale: (next: Locale) => void;
-  toggleLocale: () => void;
 };
 
 const LocaleContext = createContext<LocaleContextValue | null>(null);
@@ -40,14 +37,8 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = next;
   }, []);
 
-  const toggleLocale = useCallback(() => {
-    setLocale(locale === "en" ? "es" : "en");
-  }, [locale, setLocale]);
-
   return (
-    <LocaleContext.Provider
-      value={{ locale, copy: COPY[locale], setLocale, toggleLocale }}
-    >
+    <LocaleContext.Provider value={{ locale, copy: COPY[locale], setLocale }}>
       {children}
     </LocaleContext.Provider>
   );
