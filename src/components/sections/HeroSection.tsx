@@ -1,5 +1,3 @@
-"use client";
-
 import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
 
@@ -7,31 +5,36 @@ export function HeroSection() {
   const { copy } = useLocale();
 
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <header className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero-grid">
-        <p className="num-label">{copy.hero.rail}</p>
-        <div className="hero-main">
-          <h1 className="brand-display" id="hero-title">
-            {SITE.name}
+        <div>
+          <div className="hero-kicker">
+            <span className="version-chip">{copy.hero.version}</span>
+            <span className="kicker-label">{copy.hero.kicker}</span>
+          </div>
+          <h1 id="hero-title">
+            {copy.hero.titleA}
+            <br />
+            {copy.hero.titleB}
           </h1>
-          <p className="lede">
-            {copy.hero.tagline}. {copy.hero.description}
-          </p>
+        </div>
+        <div className="hero-aside">
+          <p>{copy.hero.body}</p>
           <div className="cta-row">
-            <a className="btn-outline" href="#get-started">
+            <a className="btn-primary" href="#install">
               {copy.hero.cta}
             </a>
             <a
-              className="link-arrow"
+              className="btn-ghost"
               href={SITE.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {copy.hero.github}
+              {copy.hero.source}
             </a>
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 }
