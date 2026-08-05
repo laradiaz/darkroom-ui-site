@@ -101,26 +101,28 @@ export function GetStartedSection() {
 
   return (
     <section className="install" id="install" aria-labelledby="install-title">
-      <span className="label">{copy.install.tag}</span>
-      <h2 id="install-title">{copy.install.title}</h2>
       <div className="install-grid">
-        <div className="code-stack">
-          <CopyCard
-            label={copy.install.shellLabel}
-            text={SHELL_TEXT}
-            copyHint={copy.install.copy}
-            copiedHint={copy.install.copied}
-          >
-            <ShellSnippet />
-          </CopyCard>
-          <CopyCard
-            label={copy.install.importLabel}
-            text={IMPORT_TEXT}
-            copyHint={copy.install.copy}
-            copiedHint={copy.install.copied}
-          >
-            <ImportSnippet />
-          </CopyCard>
+        <div className="install-main">
+          <span className="label">{copy.install.tag}</span>
+          <h2 id="install-title">{copy.install.title}</h2>
+          <div className="code-stack">
+            <CopyCard
+              label={copy.install.shellLabel}
+              text={SHELL_TEXT}
+              copyHint={copy.install.copy}
+              copiedHint={copy.install.copied}
+            >
+              <ShellSnippet />
+            </CopyCard>
+            <CopyCard
+              label={copy.install.importLabel}
+              text={IMPORT_TEXT}
+              copyHint={copy.install.copy}
+              copiedHint={copy.install.copied}
+            >
+              <ImportSnippet />
+            </CopyCard>
+          </div>
         </div>
         <div className="install-side">
           <p>{copy.install.body}</p>

@@ -33,15 +33,6 @@ export function SiteNav() {
           <span className="edition-label">{copy.edition}</span>
         </div>
         <div className="nav-links">
-          <a href="/" onClick={(e) => goToSection(e, "features")}>
-            {copy.nav.index}
-          </a>
-          <a href="/" onClick={(e) => goToSection(e, "theming")}>
-            {copy.nav.reveal}
-          </a>
-          <a href="/" onClick={(e) => goToSection(e, "install")}>
-            {copy.nav.negative}
-          </a>
           <a href={SITE.storybookUrl} target="_blank" rel="noopener noreferrer">
             {copy.nav.catalog}
           </a>
