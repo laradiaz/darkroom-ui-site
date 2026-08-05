@@ -1,14 +1,11 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { useDarkroomDarkMode } from "darkroom-ui";
-import { GitHubIcon, MoonIcon, SunIcon } from "@/components/icons";
 import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
 
 export function SiteNav() {
   const { toggle, isDark } = useDarkroomDarkMode();
-  const { copy, locale, toggleLocale } = useLocale();
+  const { copy, locale, setLocale } = useLocale();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -20,59 +17,58 @@ export function SiteNav() {
     : copy.nav.themeToggle;
 
   const navItems = [
-    { label: copy.nav.features, href: "#features" },
-    { label: copy.nav.theming, href: "#theming" },
-    { label: copy.nav.install, href: "#get-started" },
-    { label: copy.nav.components, href: SITE.storybookUrl },
+    { label: copy.nav.index, href: "#features" },
+    { label: copy.nav.reveal, href: "#theming" },
+    { label: copy.nav.negative, href: "#install" },
+    { label: copy.nav.catalog, href: SITE.storybookUrl, external: true },
   ];
 
   return (
-    <header className="masthead">
-      <a className="wordmark" href="#">
-        <img
-          className="wordmark-mark"
-          src="/android-chrome-192x192.png"
-          alt=""
-          width={28}
-          height={28}
-        />
-        {SITE.name}
-      </a>
-      <nav className="mast-nav" aria-label={copy.nav.primary}>
-        {navItems.map((item) => (
-          <a
-            key={item.href}
-            href={item.href}
-            {...(item.href.startsWith("http")
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
-          >
-            {item.label}
-          </a>
-        ))}
-        <button
-          type="button"
-          className="lang-btn"
-          onClick={toggleLocale}
-          aria-label={copy.nav.langAria}
-        >
-          <span className={locale === "en" ? "is-active" : undefined}>EN</span>
-          <span aria-hidden="true">/</span>
-          <span className={locale === "es" ? "is-active" : undefined}>ES</span>
-        </button>
-        <button type="button" className="icon-btn" onClick={toggle} aria-label={themeLabel}>
-          {mounted && isDark ? <SunIcon /> : <MoonIcon />}
-        </button>
-        <a
-          className="icon-btn"
-          href={SITE.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <GitHubIcon />
+    <>
+      <div className="edition-bar">
+        <span>{copy.edition}</span>
+        <div className="edition-controls">
+          <div className="lang-pair" role="group" aria-label={copy.nav.langAria}>
+            <button
+              type="button"
+              className={locale === "en" ? "is-active" : undefined}
+              onClick={() => setLocale("en")}
+            >
+              EN
+            </button>
+            <span className="sep" aria-hidden="true">
+              /
+            </span>
+            <button
+              type="button"
+              className={locale === "es" ? "is-active" : undefined}
+              onClick={() => setLocale("es")}
+            >
+              ES
+            </button>
+          </div>
+          <button type="button" className="mode-btn" onClick={toggle} aria-label={themeLabel}>
+            {themeLabel}
+          </button>
+        </div>
+      </div>
+
+      <nav className="site-nav" aria-label={copy.nav.primary}>
+        <a className="wordmark" href="#top" aria-label={SITE.name}>
+          <img src="/android-chrome-192x192.png" alt="" width={36} height={36} />
         </a>
+        <div className="nav-links">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
       </nav>
-    </header>
+    </>
   );
 }
