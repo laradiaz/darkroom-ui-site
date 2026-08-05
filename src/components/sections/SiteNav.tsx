@@ -19,10 +19,32 @@ export function SiteNav() {
     : copy.nav.themeToggle;
 
   return (
-    <>
-      <div className="edition-bar">
-        <span>{copy.edition}</span>
-        <div className="edition-controls">
+    <header className="site-header">
+      <nav className="site-nav" aria-label={copy.nav.primary}>
+        <div className="nav-brand">
+          <a
+            className="wordmark"
+            href="/"
+            aria-label={SITE.name}
+            onClick={(e) => goToSection(e, "top")}
+          >
+            <img src="/android-chrome-192x192.png" alt="" width={36} height={36} />
+          </a>
+          <span className="edition-label">{copy.edition}</span>
+        </div>
+        <div className="nav-links">
+          <a href="/" onClick={(e) => goToSection(e, "features")}>
+            {copy.nav.index}
+          </a>
+          <a href="/" onClick={(e) => goToSection(e, "theming")}>
+            {copy.nav.reveal}
+          </a>
+          <a href="/" onClick={(e) => goToSection(e, "install")}>
+            {copy.nav.negative}
+          </a>
+          <a href={SITE.storybookUrl} target="_blank" rel="noopener noreferrer">
+            {copy.nav.catalog}
+          </a>
           <div className="lang-pair" role="group" aria-label={copy.nav.langAria}>
             <button
               type="button"
@@ -46,32 +68,7 @@ export function SiteNav() {
             {themeLabel}
           </button>
         </div>
-      </div>
-
-      <nav className="site-nav" aria-label={copy.nav.primary}>
-        <a
-          className="wordmark"
-          href="/"
-          aria-label={SITE.name}
-          onClick={(e) => goToSection(e, "top")}
-        >
-          <img src="/android-chrome-192x192.png" alt="" width={36} height={36} />
-        </a>
-        <div className="nav-links">
-          <a href="/" onClick={(e) => goToSection(e, "features")}>
-            {copy.nav.index}
-          </a>
-          <a href="/" onClick={(e) => goToSection(e, "theming")}>
-            {copy.nav.reveal}
-          </a>
-          <a href="/" onClick={(e) => goToSection(e, "install")}>
-            {copy.nav.negative}
-          </a>
-          <a href={SITE.storybookUrl} target="_blank" rel="noopener noreferrer">
-            {copy.nav.catalog}
-          </a>
-        </div>
       </nav>
-    </>
+    </header>
   );
 }

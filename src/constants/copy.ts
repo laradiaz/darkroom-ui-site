@@ -4,7 +4,7 @@ export const LOCALE_STORAGE_KEY = "darkroom-ui-locale";
 
 export const COPY = {
   en: {
-    edition: "darkroom-ui · 2026",
+    edition: "darkroom-ui",
     nav: {
       index: "Features",
       reveal: "Theming",
@@ -107,7 +107,7 @@ export const COPY = {
     },
   },
   es: {
-    edition: "darkroom-ui · 2026",
+    edition: "darkroom-ui",
     nav: {
       index: "Features",
       reveal: "Theming",
