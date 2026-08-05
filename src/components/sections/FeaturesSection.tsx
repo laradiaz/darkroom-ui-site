@@ -1,18 +1,19 @@
-import { FEATURES } from "@/constants/site";
+"use client";
+
+import { useLocale } from "@/components/LocaleProvider";
 
 export function FeaturesSection() {
+  const { copy } = useLocale();
+
   return (
     <section className="section" id="features" aria-labelledby="features-title">
       <div className="section-grid">
-        <p className="num-label">02 — Features</p>
+        <p className="num-label">{copy.features.rail}</p>
         <div>
-          <h2 id="features-title">Built for editorial product sites</h2>
-          <p className="section-intro">
-            Everything you need to ship a polished marketing or content experience — without a
-            rainbow of accent colors.
-          </p>
+          <h2 id="features-title">{copy.features.title}</h2>
+          <p className="section-intro">{copy.features.intro}</p>
           <ul className="feature-index">
-            {FEATURES.map((feature) => (
+            {copy.features.items.map((feature) => (
               <li key={feature.title}>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>

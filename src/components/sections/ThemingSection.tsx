@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { useDarkroomDarkMode } from "darkroom-ui";
+import { useLocale } from "@/components/LocaleProvider";
 
 export function ThemingSection() {
   const { theme, setTheme, isDark } = useDarkroomDarkMode();
+  const { copy } = useLocale();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -12,36 +14,34 @@ export function ThemingSection() {
   return (
     <section className="section" id="theming" aria-labelledby="theming-title">
       <div className="section-grid">
-        <p className="num-label">03 — Tone</p>
+        <p className="num-label">{copy.theming.rail}</p>
         <div>
-          <h2 id="theming-title">Styled with CSS variables</h2>
+          <h2 id="theming-title">{copy.theming.title}</h2>
           <p className="section-intro">
-            Warm paper in light mode, charcoal in dark. Toggle below or use{" "}
-            <code className="inline">useDarkroomDarkMode()</code> in your app — same storage key as
-            this site.
+            {copy.theming.introBefore}{" "}
+            <code className="inline">useDarkroomDarkMode()</code> {copy.theming.introAfter}
           </p>
           <div className="theme-split">
             <div className="theme-pane">
               <p className="section-intro" style={{ margin: 0 }}>
-                Paper and charcoal share one token surface. No second theme object — only values
-                that flip when <code className="inline">.dark</code> lands on{" "}
-                <code className="inline">html</code>.
+                {copy.theming.pane} <code className="inline">.dark</code>{" "}
+                {copy.theming.paneAfter} <code className="inline">html</code>.
               </p>
             </div>
             <div className="theme-pane demo">
               <p className="theme-status">
                 {mounted
-                  ? `Current: ${isDark ? "dark" : "light"} (${theme})`
-                  : "Current theme loads from your preference"}
+                  ? copy.theming.current(isDark ? "dark" : "light", theme)
+                  : copy.theming.currentLoading}
               </p>
-              <div className="theme-toggles" role="group" aria-label="Color theme">
+              <div className="theme-toggles" role="group" aria-label={copy.theming.themeGroup}>
                 <button
                   type="button"
                   className="btn-outline"
                   aria-pressed={mounted && theme === "light"}
                   onClick={() => setTheme("light")}
                 >
-                  Light
+                  {copy.theming.light}
                 </button>
                 <button
                   type="button"
@@ -49,7 +49,7 @@ export function ThemingSection() {
                   aria-pressed={mounted && theme === "dark"}
                   onClick={() => setTheme("dark")}
                 >
-                  Dark
+                  {copy.theming.dark}
                 </button>
                 <button
                   type="button"
@@ -57,7 +57,7 @@ export function ThemingSection() {
                   aria-pressed={mounted && theme === "system"}
                   onClick={() => setTheme("system")}
                 >
-                  System
+                  {copy.theming.system}
                 </button>
               </div>
             </div>

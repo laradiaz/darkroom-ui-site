@@ -1,20 +1,25 @@
+"use client";
+
+import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
 
 export function HeroSection() {
+  const { copy } = useLocale();
+
   return (
     <section className="hero" aria-labelledby="hero-title">
       <div className="hero-grid">
-        <p className="num-label">01 — Library</p>
+        <p className="num-label">{copy.hero.rail}</p>
         <div className="hero-main">
           <h1 className="brand-display" id="hero-title">
             {SITE.name}
           </h1>
           <p className="lede">
-            {SITE.tagline}. {SITE.description}
+            {copy.hero.tagline}. {copy.hero.description}
           </p>
           <div className="cta-row">
             <a className="btn-outline" href="#get-started">
-              Get started
+              {copy.hero.cta}
             </a>
             <a
               className="link-arrow"
@@ -22,7 +27,7 @@ export function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View on GitHub →
+              {copy.hero.github}
             </a>
           </div>
         </div>

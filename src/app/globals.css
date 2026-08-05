@@ -31,7 +31,7 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-short: 220ms;
   --measure: 38rem;
-  --rail: 7.5rem;
+  --rail: 8rem;
   --page: min(72rem, calc(100% - 2 * var(--space-md)));
 }
 
@@ -93,7 +93,8 @@ button:focus-visible {
 
 .wordmark {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
+  gap: 0.55rem;
   text-decoration: none;
   font-family: var(--font-display);
   font-size: 1.65rem;
@@ -101,6 +102,13 @@ button:focus-visible {
   letter-spacing: -0.02em;
   line-height: 1;
   white-space: nowrap;
+}
+
+.wordmark-mark {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 0.35rem;
+  flex-shrink: 0;
 }
 
 .mast-nav {
@@ -120,6 +128,30 @@ button:focus-visible {
 }
 
 .mast-nav a:hover {
+  color: var(--color-ink);
+}
+
+.lang-btn {
+  height: 2.25rem;
+  padding-inline: 0.55rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  border: 1px solid var(--color-rule);
+  background: none;
+  color: var(--color-ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+
+.lang-btn:hover {
+  border-color: var(--color-ink);
+}
+
+.lang-btn .is-active {
   color: var(--color-ink);
 }
 

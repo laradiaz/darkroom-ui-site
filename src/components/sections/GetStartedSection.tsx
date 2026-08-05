@@ -1,3 +1,6 @@
+"use client";
+
+import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
 
 const INSTALL = `pnpm add darkroom-ui
@@ -7,15 +10,15 @@ import "darkroom-ui/fonts.css";
 import { Button, DarkroomUIProvider } from "darkroom-ui";`;
 
 export function GetStartedSection() {
+  const { copy } = useLocale();
+
   return (
     <section className="section" id="get-started" aria-labelledby="install-title">
       <div className="section-grid">
-        <p className="num-label">04 — Install</p>
+        <p className="num-label">{copy.install.rail}</p>
         <div>
-          <h2 id="install-title">Get started in minutes</h2>
-          <p className="section-intro">
-            Install the package, import styles once, wrap with the provider, and compose.
-          </p>
+          <h2 id="install-title">{copy.install.title}</h2>
+          <p className="section-intro">{copy.install.intro}</p>
           <div className="install-block">
             <pre>{INSTALL}</pre>
           </div>
@@ -34,7 +37,7 @@ export function GetStartedSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Storybook →
+              {copy.install.storybook}
             </a>
           </div>
         </div>

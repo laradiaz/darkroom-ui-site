@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import "darkroom-ui/style.css";
 import "darkroom-ui/fonts.css";
+import { COPY } from "@/constants/copy";
 import { SITE } from "@/constants/site";
-
-const themeInitScript = `(function(){try{var k="darkroom-ui-theme";var t=localStorage.getItem(k);var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})();`;
 import "./globals.css";
 
+const themeInitScript = `(function(){try{var k="darkroom-ui-theme";var t=localStorage.getItem(k);var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})();`;
+
 export const metadata: Metadata = {
-  title: `${SITE.name} — ${SITE.tagline}`,
-  description: SITE.description,
+  title: `${SITE.name} — ${COPY.en.hero.tagline}`,
+  description: COPY.en.hero.description,
   icons: {
     icon: [
       { url: "/favicon.ico" },
