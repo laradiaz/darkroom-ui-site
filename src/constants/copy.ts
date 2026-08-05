@@ -24,7 +24,7 @@ export const COPY = {
       body: "A monochrome React component library for content-heavy UIs. Paper and charcoal tokens, CSS-variable theming, tree-shakeable exports — no accent rainbow.",
       cta: "Get started",
       source: "Source code →",
-      tagline: "Ship clear interfaces.",
+      tagline: "Monochrome editorial React components",
       description:
         "A monochrome React component library for content-heavy UIs.",
     },
@@ -127,7 +127,7 @@ export const COPY = {
       body: "Una librería React monocroma para UIs con mucho contenido. Tokens papel y carbón, theming por variables CSS, exports tree-shakeable — sin arcoíris de acentos.",
       cta: "Empezar",
       source: "Código fuente →",
-      tagline: "Interfaces claras, al grano.",
+      tagline: "Componentes React editoriales monocromáticos",
       description:
         "Una librería React monocroma para UIs con mucho contenido.",
     },
