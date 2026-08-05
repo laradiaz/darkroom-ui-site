@@ -23,14 +23,12 @@ export function SiteNav() {
       <nav className="site-nav" aria-label={copy.nav.primary}>
         <div className="nav-brand">
           <a
-            className="wordmark"
+            className="edition-label"
             href="/"
-            aria-label={SITE.name}
             onClick={(e) => goToSection(e, "top")}
           >
-            <img src="/android-chrome-192x192.png" alt="" width={36} height={36} />
+            {copy.edition}
           </a>
-          <span className="edition-label">{copy.edition}</span>
         </div>
         <div className="nav-links">
           <a href={SITE.storybookUrl} target="_blank" rel="noopener noreferrer">

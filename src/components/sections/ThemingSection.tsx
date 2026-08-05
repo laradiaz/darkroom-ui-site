@@ -1,7 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Button, Heading, Label, Text, useDarkroomDarkMode } from "darkroom-ui";
 import { useLocale } from "@/components/LocaleProvider";
-import { SITE } from "@/constants/site";
 
 function PreviewSurface({
   brand,
@@ -41,18 +40,10 @@ function PreviewSurface({
           <Heading level={3}>{heading}</Heading>
           <Text size="caption">{body}</Text>
           <div className="preview-actions">
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => window.open(SITE.storybookUrl, "_blank", "noopener,noreferrer")}
-            >
+            <Button variant="primary" size="sm">
               {cta}
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => window.open(SITE.githubUrl, "_blank", "noopener,noreferrer")}
-            >
+            <Button variant="ghost" size="sm">
               GitHub
             </Button>
           </div>

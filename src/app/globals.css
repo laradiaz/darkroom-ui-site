@@ -150,20 +150,6 @@ button {
   white-space: nowrap;
 }
 
-.wordmark {
-  display: block;
-  line-height: 0;
-  border-radius: 8px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.wordmark img {
-  display: block;
-  width: 36px;
-  height: 36px;
-}
-
 .nav-links {
   display: flex;
   flex-wrap: wrap;
