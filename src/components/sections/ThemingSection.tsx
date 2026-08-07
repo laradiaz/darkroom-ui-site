@@ -28,11 +28,6 @@ function PreviewSurface({
     >
       <div className="mini-card-bar">
         <strong>{brand}</strong>
-        <div className="mini-dots">
-          <span />
-          <span />
-          <span />
-        </div>
       </div>
       <div className="mini-card-body">
         <img className="mini-media" src="/landing-example.jpg" alt={mediaAlt} />
@@ -106,6 +101,14 @@ export function ThemingSection() {
             {copy.reveal.titleB}
           </h2>
           <p>{copy.reveal.body}</p>
+          <ol className="detail-list reveal-points">
+            {copy.reveal.points.map((point) => (
+              <li key={point.title}>
+                <strong>{point.title}</strong>
+                <span>{point.desc}</span>
+              </li>
+            ))}
+          </ol>
           <div className="theme-btns" role="group" aria-label={copy.nav.themeToggle}>
             <button
               type="button"
@@ -126,34 +129,34 @@ export function ThemingSection() {
           </div>
         </div>
 
-        <button
-          ref={triggerRef}
-          type="button"
-          className="mini-card mini-card-trigger"
-          onClick={openModal}
-          aria-haspopup="dialog"
-          aria-expanded={open}
-          aria-label={copy.reveal.openPreview}
-        >
-          <div className="mini-card-bar">
-            <strong>{SITE.name}</strong>
-            <div className="mini-dots">
-              <span />
-              <span />
-              <span />
+        <div className="preview-trigger">
+          <button
+            ref={triggerRef}
+            type="button"
+            className="mini-card mini-card-trigger"
+            onClick={openModal}
+            aria-haspopup="dialog"
+            aria-expanded={open}
+            aria-label={copy.reveal.openPreview}
+          >
+            <div className="mini-card-bar">
+              <strong>{SITE.name}</strong>
             </div>
-          </div>
-          <div className="mini-card-body">
-            <img className="mini-media" src="/landing-example.jpg" alt="" />
-            <div className="mini-copy">
-              <span className="kicker">{copy.reveal.miniKicker}</span>
-              <span className="heading">{copy.reveal.miniHeading}</span>
-              <span className="body">{copy.reveal.miniBody}</span>
-              <span className="mini-cta">{copy.reveal.miniCta}</span>
+            <div className="mini-card-body">
+              <img className="mini-media" src="/landing-example.jpg" alt="" />
+              <div className="mini-copy">
+                <span className="kicker">{copy.reveal.miniKicker}</span>
+                <span className="heading">{copy.reveal.miniHeading}</span>
+                <span className="body">{copy.reveal.miniBody}</span>
+                <span className="mini-cta">{copy.reveal.miniCta}</span>
+              </div>
             </div>
-          </div>
-          <div className="mini-card-foot">{pageFoot}</div>
-        </button>
+            <div className="mini-card-foot">
+              <span>{pageFoot}</span>
+              <span className="preview-cue">{copy.reveal.previewCue}</span>
+            </div>
+          </button>
+        </div>
       </div>
 
       {open ? (
