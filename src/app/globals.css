@@ -7,6 +7,12 @@
   --font-body: "DM Sans", system-ui, sans-serif;
   --font-mono: ui-monospace, Menlo, monospace;
   --font-brand: "Courier Prime", ui-monospace, Menlo, monospace;
+  --text-meta: 12px;
+  --text-nav: 13px;
+  --text-step: 13px;
+  --text-body: 17px;
+  --text-code: 14.5px;
+  --text-link: 15px;
   --content: min(1280px, calc(100% - 96px));
   --gutter: 48px;
   --ease: 200ms;
@@ -151,7 +157,7 @@ button {
 }
 
 .nav-links a {
-  font-size: 13px;
+  font-size: var(--text-nav);
   color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -186,7 +192,7 @@ button {
 
 .version-chip {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: var(--text-meta);
   letter-spacing: 0.15em;
   border: 1px dashed var(--color-badge);
   padding: 5px 14px;
@@ -194,7 +200,7 @@ button {
 }
 
 .kicker-label {
-  font-size: 12px;
+  font-size: var(--text-meta);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -220,7 +226,7 @@ button {
 
 .hero-aside p {
   margin: 0;
-  font-size: 17px;
+  font-size: var(--text-body);
   line-height: 1.65;
   color: var(--color-text-muted);
   max-width: 28rem;
@@ -238,7 +244,7 @@ button {
   align-items: center;
   justify-content: center;
   font-weight: 500;
-  font-size: 15px;
+  font-size: var(--text-link);
   padding: 15px 30px;
   border-radius: 4px;
   transition:
@@ -303,7 +309,7 @@ button {
 }
 
 .index-head span {
-  font-size: 12px;
+  font-size: var(--text-meta);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -341,7 +347,7 @@ button {
 
 .index-list p {
   margin: 0;
-  font-size: 16px;
+  font-size: var(--text-body);
   line-height: 1.65;
   color: var(--color-text-muted);
   max-width: 36rem;
@@ -366,16 +372,16 @@ button {
   width: 100%;
   max-width: var(--content);
   margin: 0 auto;
-  padding: 56px var(--gutter) 64px;
+  padding: 80px var(--gutter) 96px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.15fr);
   gap: clamp(32px, 5vw, 64px);
   align-items: start;
 }
 
 .label {
   display: inline-block;
-  font-size: 12px;
+  font-size: var(--text-meta);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -394,10 +400,44 @@ button {
 
 .reveal-copy p {
   margin: 0 0 28px;
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.65;
   color: var(--color-text-muted);
   max-width: 28rem;
+}
+
+.detail-list {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  max-width: 40rem;
+}
+
+.detail-list li {
+  display: grid;
+  gap: 4px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+
+.detail-list strong {
+  font-size: var(--text-step);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.detail-list span {
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.reveal-points {
+  margin-bottom: 32px;
 }
 
 .theme-btns {
@@ -414,7 +454,8 @@ button {
 }
 
 .mini-card {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 5 / 4;
+  min-height: 380px;
   border: 1px solid var(--color-border);
   border-radius: 4px;
   overflow: hidden;
@@ -444,6 +485,11 @@ button {
   box-shadow: 0 10px 32px var(--color-shadow-soft);
 }
 
+.mini-card-trigger:hover .preview-cue {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
 .mini-card-trigger:focus-visible {
   outline: 2px solid var(--color-text);
   outline-offset: 3px;
@@ -452,7 +498,6 @@ button {
 .mini-card-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 14px 18px;
   border-bottom: 1px solid var(--color-border);
 }
@@ -462,18 +507,6 @@ button {
   font-size: 15px;
   font-weight: 400;
   color: var(--color-text);
-}
-
-.mini-dots {
-  display: flex;
-  gap: 12px;
-}
-
-.mini-dots span {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-text-muted);
 }
 
 .mini-card-body {
@@ -487,10 +520,10 @@ button {
 
 .mini-media {
   display: block;
-  width: 42%;
+  width: 46%;
   flex-shrink: 0;
   height: 100%;
-  min-height: 140px;
+  min-height: 180px;
   object-fit: cover;
   object-position: center;
   border-radius: 4px;
@@ -501,12 +534,12 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   min-width: 0;
 }
 
 .mini-copy .kicker {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -514,35 +547,50 @@ button {
 
 .mini-copy .heading {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.15;
   color: var(--color-text);
 }
 
 .mini-copy .body {
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 13px;
+  line-height: 1.55;
   color: var(--color-text-muted);
 }
 
 .mini-cta {
   align-self: flex-start;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 4px;
   background: var(--color-text);
   color: var(--color-paper);
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .mini-card-foot {
-  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
   border-top: 1px solid var(--color-border);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.05em;
   color: var(--color-text-muted);
+}
+
+.preview-cue {
+  font-family: var(--font-body);
+  font-size: var(--text-nav);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--color-text);
+  text-underline-offset: 3px;
+  white-space: nowrap;
 }
 
 .preview-actions {
@@ -661,30 +709,58 @@ button {
 .install {
   max-width: var(--content);
   margin: 0 auto;
-  padding: 56px var(--gutter) 64px;
+  padding: 80px var(--gutter) 120px;
+  /* Enough length that #install can park under the sticky nav without Theming still in view */
+  min-height: calc(100svh - 88px);
 }
 
-.install-grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: start;
-}
-
-.install-main {
-  min-width: 0;
+.install-head {
+  max-width: 40rem;
+  margin-bottom: 36px;
 }
 
 .install h2 {
-  margin: 16px 0 28px;
+  margin: 16px 0 16px;
 }
 
-.code-stack {
+.install-head p {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: 1.65;
+  color: var(--color-text-muted);
+}
+
+.install-steps {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  min-width: 0;
+  gap: 28px;
+}
+
+.install-step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 28px;
+  border-top: 1px solid var(--color-border);
+}
+
+.install-step strong {
+  font-size: var(--text-step);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.install-step-desc {
+  font-size: var(--text-body);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  max-width: 42rem;
+  margin-bottom: 6px;
 }
 
 .code-card {
@@ -741,16 +817,65 @@ button {
   color: #ffffff;
 }
 
+.code-card-tabs {
+  cursor: default;
+}
+
+.code-card-tabs .code-card-bar {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.code-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+}
+
+.code-tabs button {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #9d9d9d;
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+
+.code-tabs button:hover {
+  color: #ffffff;
+}
+
+.code-tabs button.is-active {
+  color: #ffffff;
+  border-color: #6e6e6e;
+  background: #1e1e1e;
+}
+
+.code-card-tabs .code-card-action {
+  flex-shrink: 0;
+  padding: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.code-card-tabs .code-card-action:hover {
+  color: #ffffff;
+  background: #1e1e1e;
+}
+
 .code-block {
   margin: 0;
   font-family: var(--font-mono);
-  font-size: 13.5px;
+  font-size: var(--text-code);
   line-height: 1.75;
   color: var(--code-fg);
   background: transparent;
   border: 0;
   border-radius: 0;
-  padding: 20px 22px;
+  padding: 22px 24px;
   overflow-x: auto;
   white-space: pre;
   pointer-events: none;
@@ -784,20 +909,6 @@ button {
   color: var(--code-fg);
 }
 
-.install-side {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 28rem;
-}
-
-.install-side p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.65;
-  color: var(--color-text-muted);
-}
-
 .link-row {
   display: flex;
   gap: 20px;
@@ -806,7 +917,7 @@ button {
 
 .link-row a {
   font-weight: 500;
-  font-size: 14px;
+  font-size: var(--text-link);
   color: var(--color-text);
   text-underline-offset: 4px;
 }
@@ -850,8 +961,7 @@ button {
 
 @media (max-width: 900px) {
   .hero-grid,
-  .reveal-inner,
-  .install-grid {
+  .reveal-inner {
     grid-template-columns: 1fr;
     gap: 48px;
   }
@@ -898,6 +1008,6 @@ button {
 
   .mini-media {
     width: 100%;
-    min-height: 120px;
+    min-height: 160px;
   }
 }

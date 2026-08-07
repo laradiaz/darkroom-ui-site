@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDarkroomDarkMode } from "darkroom-ui";
 import { useLocale } from "@/components/LocaleProvider";
 import { SITE } from "@/constants/site";
+import { goToSection } from "@/scroll";
 
 export function SiteNav() {
   const { toggle, isDark } = useDarkroomDarkMode();
@@ -19,7 +20,7 @@ export function SiteNav() {
   return (
     <header className="site-header">
       <nav className="site-nav" aria-label={copy.nav.primary}>
-        <a className="edition-label" href="#top">
+        <a className="edition-label" href="/" onClick={(e) => goToSection(e, "top")}>
           {SITE.name}
         </a>
         <div className="nav-links">

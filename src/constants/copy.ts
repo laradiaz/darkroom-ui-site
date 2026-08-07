@@ -67,6 +67,20 @@ export const COPY = {
       titleA: "One token surface,",
       titleB: "light or dark.",
       body: "Toggle a class on html and the palette updates. No duplicate theme objects — just CSS variables that flip with mode.",
+      points: [
+        {
+          title: "One class",
+          desc: "Add or remove .dark on html. Paper and charcoal tokens flip together.",
+        },
+        {
+          title: "Hook included",
+          desc: "useDarkroomDarkMode() reads and writes the same preference this site uses.",
+        },
+        {
+          title: "Override tokens",
+          desc: "Restyle by setting --color-* variables in your CSS — components follow.",
+        },
+      ],
       light: "Light",
       dark: "Dark",
       previewLight: "html (light)",
@@ -78,6 +92,7 @@ export const COPY = {
       miniCta: "Docs",
       mediaAlt: "Component media preview",
       openPreview: "Open live preview",
+      previewCue: "Open live preview →",
       closePreview: "Close preview",
       modalTitle: "Live component preview",
       modalHint: "Toggle light/dark on this card only — the page theme stays put.",
@@ -85,11 +100,35 @@ export const COPY = {
     install: {
       tag: "03 — Install",
       title: "Add it and start composing.",
-      body: "Install the package, import styles once, wrap with the provider. Every component also ships as a tree-shakeable subpath export.",
+      body: "Install the package, import styles once (or skip them in unstyled mode), wrap with the provider. Every component also ships as a tree-shakeable subpath export.",
+      points: [
+        {
+          title: "Install",
+          desc: "Add darkroom-ui with pnpm, npm, or yarn. Peer: React 16.8+.",
+        },
+        {
+          title: "Styles once",
+          desc: "Import style.css and fonts.css at the app entry — skip these if you run unstyled.",
+        },
+        {
+          title: "Provider",
+          desc: "Wrap with DarkroomUIProvider. Unstyled mode sets config.unstyled for the tree; pass unstyled={false} on a component to opt back into styles.",
+        },
+        {
+          title: "Compose",
+          desc: "Import from darkroom-ui or a subpath like darkroom-ui/button.",
+        },
+      ],
       npm: "npm →",
       storybook: "Storybook →",
       shellLabel: "terminal",
+      shellTabsLabel: "Package manager",
       importLabel: "app entry",
+      providerLabel: "provider",
+      providerTabsLabel: "Provider mode",
+      providerDefaultTab: "default",
+      providerUnstyledTab: "unstyled",
+      composeLabel: "compose",
       copy: "Click to copy",
       copied: "Copied",
     },
@@ -161,6 +200,20 @@ export const COPY = {
       titleA: "Una sola superficie",
       titleB: "de tokens.",
       body: "Una clase en html actualiza la paleta. Sin objetos de tema duplicados: solo variables CSS que cambian con el modo.",
+      points: [
+        {
+          title: "Una clase",
+          desc: "Agregá o quitá .dark en html. Los tokens de papel y carbón cambian juntos.",
+        },
+        {
+          title: "Hook incluido",
+          desc: "useDarkroomDarkMode() lee y escribe la misma preferencia que usa este sitio.",
+        },
+        {
+          title: "Override de tokens",
+          desc: "Reestilizá seteando variables --color-* en tu CSS — los componentes siguen.",
+        },
+      ],
       light: "Claro",
       dark: "Oscuro",
       previewLight: "html (claro)",
@@ -172,6 +225,7 @@ export const COPY = {
       miniCta: "Docs",
       mediaAlt: "Vista previa del componente",
       openPreview: "Abrir preview en vivo",
+      previewCue: "Abrir preview en vivo →",
       closePreview: "Cerrar preview",
       modalTitle: "Preview de componentes",
       modalHint: "Alterná claro/oscuro solo en esta card — el tema de la página no cambia.",
@@ -179,11 +233,35 @@ export const COPY = {
     install: {
       tag: "03 — Install",
       title: "Instalá y empezá a componer.",
-      body: "Instalá el paquete, importá los estilos una vez, envolvé con el provider. Cada componente también sale por subpath tree-shakeable.",
+      body: "Instalá el paquete, importá los estilos una vez (o saltealos en modo unstyled), envolvé con el provider. Cada componente también sale por subpath tree-shakeable.",
+      points: [
+        {
+          title: "Instalá",
+          desc: "Agregá darkroom-ui con pnpm, npm o yarn. Peer: React 16.8+.",
+        },
+        {
+          title: "Estilos una vez",
+          desc: "Importá style.css y fonts.css en la entrada de la app — saltealos si corrés unstyled.",
+        },
+        {
+          title: "Provider",
+          desc: "Envolvé con DarkroomUIProvider. El modo unstyled setea config.unstyled en el árbol; pasá unstyled={false} en un componente para volver a los estilos.",
+        },
+        {
+          title: "Componé",
+          desc: "Importá desde darkroom-ui o un subpath como darkroom-ui/button.",
+        },
+      ],
       npm: "npm →",
       storybook: "Storybook →",
       shellLabel: "terminal",
+      shellTabsLabel: "Gestor de paquetes",
       importLabel: "entrada de la app",
+      providerLabel: "provider",
+      providerTabsLabel: "Modo del provider",
+      providerDefaultTab: "default",
+      providerUnstyledTab: "unstyled",
+      composeLabel: "compose",
       copy: "Clic para copiar",
       copied: "Copiado",
     },
