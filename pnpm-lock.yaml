@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       darkroom-ui:
-        specifier: ^0.2.0
-        version: 0.2.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
+        specifier: ^0.2.5
+        version: 0.2.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react:
         specifier: ^19.0.0
         version: 19.2.6
@@ -766,11 +766,11 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
-  darkroom-ui@0.2.0:
-    resolution: {integrity: sha512-sbaBwrYvOtvdjQGXwIMuuHI5It5eCUWDjK47nHpct3WdBP9Gd+EAy/fK5m+HDjFPjynGg0Hy+TeWU/FEtUe9vg==}
+  darkroom-ui@0.2.5:
+    resolution: {integrity: sha512-0IM2AObFysE6r/wC5e8uydg9cge/nfcrQGlXDTadEIrzmOUjgIuLSgbOxCNNi+mCJdBryxLpdL3p+h6h/vJc+w==}
     peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
+      react: '>=16.8'
+      react-dom: '>=16.8'
 
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
@@ -1927,7 +1927,7 @@ snapshots:
 
   csstype@3.2.3: {}
 
-  darkroom-ui@0.2.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
+  darkroom-ui@0.2.5(react-dom@19.2.6(react@19.2.6))(react@19.2.6):
     dependencies:
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)

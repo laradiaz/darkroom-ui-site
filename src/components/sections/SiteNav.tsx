@@ -5,14 +5,14 @@ import { SITE } from "@/constants/site";
 import { goToSection } from "@/scroll";
 
 export function SiteNav() {
-  const { toggle, isDark } = useDarkroomDarkMode();
+  const { toggle, darkModeEnabled } = useDarkroomDarkMode();
   const { copy, locale, setLocale } = useLocale();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
   const themeLabel = mounted
-    ? isDark
+    ? darkModeEnabled
       ? copy.nav.themeToLight
       : copy.nav.themeToDark
     : copy.nav.themeToggle;

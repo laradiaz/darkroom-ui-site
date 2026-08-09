@@ -51,7 +51,7 @@ function PreviewSurface({
 }
 
 export function ThemingSection() {
-  const { setTheme, isDark } = useDarkroomDarkMode();
+  const { setTheme, darkModeEnabled } = useDarkroomDarkMode();
   const { copy } = useLocale();
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
@@ -82,11 +82,11 @@ export function ThemingSection() {
     };
   }, [open]);
 
-  const pageFoot = mounted && isDark ? copy.reveal.previewDark : copy.reveal.previewLight;
+  const pageFoot = mounted && darkModeEnabled ? copy.reveal.previewDark : copy.reveal.previewLight;
   const previewFoot = previewDark ? copy.reveal.previewDark : copy.reveal.previewLight;
 
   const openModal = () => {
-    setPreviewDark(isDark);
+    setPreviewDark(darkModeEnabled);
     setOpen(true);
   };
 
@@ -112,16 +112,16 @@ export function ThemingSection() {
           <div className="theme-btns" role="group" aria-label={copy.nav.themeToggle}>
             <button
               type="button"
-              className={`btn-ghost${mounted && !isDark ? " is-active" : ""}`}
-              aria-pressed={mounted && !isDark}
+              className={`btn-ghost${mounted && !darkModeEnabled ? " is-active" : ""}`}
+              aria-pressed={mounted && !darkModeEnabled}
               onClick={() => setTheme("light")}
             >
               {copy.reveal.light}
             </button>
             <button
               type="button"
-              className={`btn-ghost${mounted && isDark ? " is-active" : ""}`}
-              aria-pressed={mounted && isDark}
+              className={`btn-ghost${mounted && darkModeEnabled ? " is-active" : ""}`}
+              aria-pressed={mounted && darkModeEnabled}
               onClick={() => setTheme("dark")}
             >
               {copy.reveal.dark}
