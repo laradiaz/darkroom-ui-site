@@ -618,6 +618,8 @@ button {
   --color-shadow-soft: rgba(45, 42, 38, 0.06);
   --background: var(--color-paper);
   --foreground: var(--color-text);
+  /* Heading/Button read --color-foreground; inherited computed value ignores --foreground here */
+  --color-foreground: var(--color-text);
   color-scheme: light;
 }
 
@@ -630,6 +632,7 @@ button {
   --color-shadow-soft: rgba(0, 0, 0, 0.25);
   --background: var(--color-paper);
   --foreground: var(--color-text);
+  --color-foreground: var(--color-text);
   color-scheme: dark;
 }
 
