@@ -568,11 +568,11 @@ button {
 
 .preview-film {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 5 / 4;
   display: block;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  background: #cfc8bc;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
   object-fit: cover;
 }
 

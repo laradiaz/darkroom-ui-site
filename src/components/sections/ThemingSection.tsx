@@ -138,7 +138,7 @@ export function ThemingSection() {
           <video
             ref={filmRef}
             className="preview-film"
-            src="/media-card.mp4"
+            src="/media-card.mp4?v=2"
             autoPlay
             muted
             loop
