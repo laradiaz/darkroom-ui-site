@@ -56,11 +56,24 @@ export function ThemingSection() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [previewDark, setPreviewDark] = useState(false);
+  const [previewLive, setPreviewLive] = useState(false);
   const titleId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    const el = triggerRef.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => setPreviewLive(entry.isIntersecting),
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -82,7 +95,6 @@ export function ThemingSection() {
     };
   }, [open]);
 
-  const pageFoot = mounted && darkModeEnabled ? copy.reveal.previewDark : copy.reveal.previewLight;
   const previewFoot = previewDark ? copy.reveal.previewDark : copy.reveal.previewLight;
 
   const openModal = () => {
@@ -133,7 +145,7 @@ export function ThemingSection() {
           <button
             ref={triggerRef}
             type="button"
-            className="mini-card mini-card-trigger"
+            className={`mini-card mini-card-trigger${previewLive && !open ? " is-live" : ""}`}
             onClick={openModal}
             aria-haspopup="dialog"
             aria-expanded={open}
@@ -152,7 +164,10 @@ export function ThemingSection() {
               </div>
             </div>
             <div className="mini-card-foot">
-              <span>{pageFoot}</span>
+              <span className="preview-mode">
+                <span className="preview-mode-light">{copy.reveal.previewLight}</span>
+                <span className="preview-mode-dark">{copy.reveal.previewDark}</span>
+              </span>
               <span className="preview-cue">{copy.reveal.previewCue}</span>
             </div>
           </button>

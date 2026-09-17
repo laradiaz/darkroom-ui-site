@@ -147,9 +147,9 @@ export const COPY = {
     },
     hero: {
       kicker: "kit de componentes react",
-      titleA: "Interfaces",
-      titleB: "claras, al grano.",
-      body: "Una librería React monocroma para UIs con mucho contenido. Tokens papel y carbón, theming por variables CSS, exports tree-shakeable — sin arcoíris de acentos.",
+      titleA: "Crea",
+      titleB: "interfaces claras.",
+      body: "Una librería monocromática de componentes React para interfaces con mucho contenido. Tokens en tonos papel y carbón.",
       cta: "Empezar",
       source: "Código fuente →",
     },
