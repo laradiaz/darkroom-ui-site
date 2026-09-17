@@ -471,135 +471,6 @@ button {
     box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ponytail: CSS token-flip loop instead of Remotion Player. Ceiling: scrubbable timeline → @remotion/player. */
-.mini-card-trigger.is-live {
-  animation: preview-tokens 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-.mini-card-trigger.is-live::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
-  height: 2px;
-  width: 100%;
-  background: var(--color-text);
-  transform: scaleX(0);
-  transform-origin: left center;
-  animation: preview-playhead 8s linear infinite;
-  pointer-events: none;
-}
-
-.mini-card-trigger.is-live .mini-media {
-  will-change: transform;
-  animation: preview-ken 16s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
-}
-
-.mini-card-trigger.is-live:hover,
-.mini-card-trigger.is-live:hover::after,
-.mini-card-trigger.is-live:hover .mini-media,
-.mini-card-trigger.is-live:hover .preview-mode-light,
-.mini-card-trigger.is-live:hover .preview-mode-dark,
-.mini-card-trigger.is-live:focus-visible,
-.mini-card-trigger.is-live:focus-visible::after,
-.mini-card-trigger.is-live:focus-visible .mini-media,
-.mini-card-trigger.is-live:focus-visible .preview-mode-light,
-.mini-card-trigger.is-live:focus-visible .preview-mode-dark {
-  animation-play-state: paused;
-}
-
-@keyframes preview-tokens {
-  0%,
-  49.999% {
-    --color-paper: #faf9f7;
-    --color-paper-dark: #f3f1ed;
-    --color-text: #2d2a26;
-    --color-text-muted: #5c5651;
-    --color-border: #d4cfc7;
-    --color-shadow-soft: rgba(45, 42, 38, 0.06);
-    --color-foreground: #2d2a26;
-    color-scheme: light;
-  }
-
-  50%,
-  100% {
-    --color-paper: #1c1917;
-    --color-paper-dark: #262220;
-    --color-text: #f5f3ef;
-    --color-text-muted: #9c958c;
-    --color-border: #3f3a36;
-    --color-shadow-soft: rgba(0, 0, 0, 0.25);
-    --color-foreground: #f5f3ef;
-    color-scheme: dark;
-  }
-}
-
-@keyframes preview-playhead {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes preview-ken {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.08) translate(-2%, 1.5%);
-  }
-}
-
-@keyframes preview-label-light {
-  0%,
-  49.999% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes preview-label-dark {
-  0%,
-  49.999% {
-    opacity: 0;
-  }
-  50%,
-  100% {
-    opacity: 1;
-  }
-}
-
-.mini-card-trigger {
-  width: 100%;
-  padding: 0;
-  text-align: left;
-  cursor: pointer;
-  font: inherit;
-  color: inherit;
-}
-
-.mini-card-trigger:hover {
-  border-color: var(--color-text-muted);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 32px var(--color-shadow-soft);
-}
-
-.mini-card-trigger:hover .preview-cue {
-  color: var(--color-text);
-  text-decoration: underline;
-}
-
-.mini-card-trigger:focus-visible {
-  outline: 2px solid var(--color-text);
-  outline-offset: 3px;
-}
-
 .mini-card-bar {
   display: flex;
   align-items: center;
@@ -688,34 +559,21 @@ button {
   color: var(--color-text-muted);
 }
 
-.preview-mode {
-  display: inline-grid;
-  min-width: 7.5rem;
+.preview-trigger {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  min-width: 0;
 }
 
-.preview-mode-light,
-.preview-mode-dark {
-  grid-area: 1 / 1;
-}
-
-.preview-mode-dark {
-  opacity: 0;
-}
-
-.mini-card-trigger.is-live .preview-mode-light {
-  animation: preview-label-light 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-.mini-card-trigger.is-live .preview-mode-dark {
-  animation: preview-label-dark 8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-html.dark .mini-card-trigger:not(.is-live) .preview-mode-light {
-  opacity: 0;
-}
-
-html.dark .mini-card-trigger:not(.is-live) .preview-mode-dark {
-  opacity: 1;
+.preview-film {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: #cfc8bc;
+  object-fit: cover;
 }
 
 .preview-cue {
@@ -727,6 +585,10 @@ html.dark .mini-card-trigger:not(.is-live) .preview-mode-dark {
   color: var(--color-text);
   text-underline-offset: 3px;
   white-space: nowrap;
+}
+
+.preview-cue:hover {
+  text-decoration: underline;
 }
 
 .preview-actions {
@@ -1148,20 +1010,5 @@ html.dark .mini-card-trigger:not(.is-live) .preview-mode-dark {
   .mini-media {
     width: 100%;
     min-height: 160px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mini-card-trigger.is-live,
-  .mini-card-trigger.is-live::after,
-  .mini-card-trigger.is-live .mini-media,
-  .mini-card-trigger.is-live .preview-mode-light,
-  .mini-card-trigger.is-live .preview-mode-dark {
-    animation: none;
-    will-change: auto;
-  }
-
-  .mini-card-trigger.is-live::after {
-    content: none;
   }
 }

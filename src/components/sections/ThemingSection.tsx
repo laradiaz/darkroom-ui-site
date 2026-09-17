@@ -56,23 +56,16 @@ export function ThemingSection() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [previewDark, setPreviewDark] = useState(false);
-  const [previewLive, setPreviewLive] = useState(false);
   const titleId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const filmRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => setMounted(true), []);
 
   useEffect(() => {
-    const el = triggerRef.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const io = new IntersectionObserver(
-      ([entry]) => setPreviewLive(entry.isIntersecting),
-      { threshold: 0.35 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    filmRef.current?.pause();
   }, []);
 
   useEffect(() => {
@@ -142,34 +135,25 @@ export function ThemingSection() {
         </div>
 
         <div className="preview-trigger">
+          <video
+            ref={filmRef}
+            className="preview-film"
+            src="/media-card.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label={copy.reveal.mediaAlt}
+          />
           <button
             ref={triggerRef}
             type="button"
-            className={`mini-card mini-card-trigger${previewLive && !open ? " is-live" : ""}`}
+            className="preview-cue"
             onClick={openModal}
             aria-haspopup="dialog"
             aria-expanded={open}
-            aria-label={copy.reveal.openPreview}
           >
-            <div className="mini-card-bar">
-              <strong>{SITE.name}</strong>
-            </div>
-            <div className="mini-card-body">
-              <img className="mini-media" src="/landing-example.jpg" alt="" />
-              <div className="mini-copy">
-                <span className="kicker">{copy.reveal.miniKicker}</span>
-                <span className="heading">{copy.reveal.miniHeading}</span>
-                <span className="body">{copy.reveal.miniBody}</span>
-                <span className="mini-cta">{copy.reveal.miniCta}</span>
-              </div>
-            </div>
-            <div className="mini-card-foot">
-              <span className="preview-mode">
-                <span className="preview-mode-light">{copy.reveal.previewLight}</span>
-                <span className="preview-mode-dark">{copy.reveal.previewDark}</span>
-              </span>
-              <span className="preview-cue">{copy.reveal.previewCue}</span>
-            </div>
+            {copy.reveal.previewCue}
           </button>
         </div>
       </div>
